@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "35ec32be48d2abe8dbbfcf81e8dba93e2b413da6ee41a2400a791dde73f64438"
+            "sha256": "a69b5c151e81bb5dd0645c7bc88c122240a94e985e3f8422a41cc7f2d2966372"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -78,6 +78,22 @@
             ],
             "index": "pypi",
             "version": "==1.9.0"
+        },
+        "django-mathfilters": {
+            "hashes": [
+                "sha256:64200a21bb249fbf27be601d4bbb788779e09c6e063170c097cd82c4d18ebb83",
+                "sha256:c9b892ef6dfc893683e75cfd0279c187a601ca68f4684c38f9da44657fb64b07"
+            ],
+            "index": "pypi",
+            "version": "==1.0.0"
+        },
+        "fontawesome": {
+            "hashes": [
+                "sha256:1b5e8f2ed12a74b88aef6f404ff770af425324041bc5620523a802d5406595b8",
+                "sha256:642d74da5f4726bb2c8f035a2f4a98fdc4294d213a291994ee0b3d845166f9e8"
+            ],
+            "index": "pypi",
+            "version": "==5.10.1.post1"
         },
         "gunicorn": {
             "hashes": [

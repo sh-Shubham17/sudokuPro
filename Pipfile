@@ -8,6 +8,8 @@ gunicorn = "*"
 pylint-django = "*"
 django-heroku = "*"
 django-htmx = "*"
+django-mathfilters = "*"
+fontawesome = "*"
 
 [dev-packages]
 pytest = "*"
