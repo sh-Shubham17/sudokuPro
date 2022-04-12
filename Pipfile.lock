@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "a69b5c151e81bb5dd0645c7bc88c122240a94e985e3f8422a41cc7f2d2966372"
+            "sha256": "3ac61c071d9d86bac8e2e35b7e245c26e6cefd4c58dc3e488e24f85bdc2dc273"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -63,6 +63,14 @@
             "markers": "python_version >= '3.8'",
             "version": "==4.0.4"
         },
+        "django-fontawesome-5": {
+            "hashes": [
+                "sha256:1be340e795a6a68ebd9ba5d75e26bd72a839515c351786ff45e16b90bf50c3a0",
+                "sha256:4fc4a7f5d0fe6e10d542ac9f1c143ad5e92aa61c6f310ea297c3c26bfc6001dd"
+            ],
+            "index": "pypi",
+            "version": "==1.0.18"
+        },
         "django-heroku": {
             "hashes": [
                 "sha256:2bc690aab89eedbe01311752320a9a12e7548e3b0ed102681acc5736a41a4762",
@@ -86,14 +94,6 @@
             ],
             "index": "pypi",
             "version": "==1.0.0"
-        },
-        "fontawesome": {
-            "hashes": [
-                "sha256:1b5e8f2ed12a74b88aef6f404ff770af425324041bc5620523a802d5406595b8",
-                "sha256:642d74da5f4726bb2c8f035a2f4a98fdc4294d213a291994ee0b3d845166f9e8"
-            ],
-            "index": "pypi",
-            "version": "==5.10.1.post1"
         },
         "gunicorn": {
             "hashes": [
