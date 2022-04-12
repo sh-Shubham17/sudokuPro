@@ -120,10 +120,14 @@ def getRandomPuzzle(level):
     #puzzlesObj = Puzzle.objects.select_related().filter(id = level_id)
 
     #print(puzzlesObj, type(puzzlesObj ), puzzlesObj.count())
-    # puzzle = puzzlesObj[0]      # we can see we can access puzzle pbjects using indexing
+    # puzzle = puzzlesObj[0]      
+    # we can see we can access puzzle pbjects using indexing
     # print(puzzle.title, puzzle.source)
-    puzzles_count = puzzlesObj.count() -1
-    random_puzzle = puzzlesObj[ random.randint(0,puzzles_count)]
+    if(puzzlesObj):
+        puzzles_count = puzzlesObj.count() -1
+        random_puzzle = puzzlesObj[ random.randint(0,puzzles_count)]
+    else:
+         return None
     #print("random puzzle", random_puzzle)
     return random_puzzle
 
@@ -135,11 +139,15 @@ def renderPlay(request, playdictionary):
 
 def changePuzzle(levelObj):
     puzzleObj = getRandomPuzzle(levelObj)
-    sudokuPuzzle = [
-        puzzleObj.qrow1,puzzleObj.qrow2,puzzleObj.qrow3,puzzleObj.qrow4,puzzleObj.qrow5,puzzleObj.qrow6,puzzleObj.qrow7,puzzleObj.qrow8,puzzleObj.qrow9
-    ]           #2d list puzzleObj
-    sudokuPuzzle = removeDigits(puzzleObj, sudokuPuzzle)
-    globals.playdictionary = {'mysudoku':sudokuPuzzle , 'message': 'solve the puzzle below', 'puzzleObj': puzzleObj, 'gamefinished': False}
+    message = 'solve the puzzle below'
+    if( puzzleObj):
+        sudokuPuzzle = [
+            puzzleObj.qrow1,puzzleObj.qrow2,puzzleObj.qrow3,puzzleObj.qrow4,puzzleObj.qrow5,puzzleObj.qrow6,puzzleObj.qrow7,puzzleObj.qrow8,puzzleObj.qrow9
+        ]           #2d list puzzleObj
+        sudokuPuzzle = removeDigits(puzzleObj, sudokuPuzzle)
+    else :
+        message = "No puzzles found! :("
+    globals.playdictionary = {'mysudoku':sudokuPuzzle , 'message': message , 'puzzleObj': puzzleObj, 'gamefinished': False}
 
 
 
