@@ -182,6 +182,10 @@ def index(request):
             return render(request, 'solver/index.html', responseData)
     else: 
       levels = get_all_levels()
-      responseData['all_levels'] = levels
-      responseData['current_level'] = levels[0]
+      if( levels ):
+        responseData['all_levels'] = levels
+        responseData['current_level'] = levels[0]
+      else : 
+        responseData['all_levels'] = {}
+        responseData['current_level'] = ''
     return render(request, 'solver/index.html', responseData)

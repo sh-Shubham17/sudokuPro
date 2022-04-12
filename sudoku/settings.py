@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-#3@_h6j!398ykcw85(7ik-mr-nru!!l0bdgi2w%pv!s74935)v
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'sudokugaming-app.herokuapp.com',
+    'sudokugaming-app.herokuapp.com','127.0.0.1',
 ]
 
 

@@ -9,8 +9,10 @@
 
 <form Method = "POST" action="">
     {% csrf_token %}
-
-    <div class="input-group mb-3" style = "width: 300px">
+    {% if message %}
+      <h1>{{message}}</h1>
+    {% else %}
+      <div class="input-group mb-3" style = "width: 300px">
         <span class="input-group-text" id="inputGroup-sizing-default">Level :</span>
         <select name="level_selected" class="form-select" aria-label="Default select example" style = "width:100px">
           <option selected value="{{current_level.name}}">{{current_level.name}}</option>
@@ -22,7 +24,7 @@
           {% endfor %}
         </select>
       </div>
-    <div class="input-group mb-3" style = "width: 300px">
+      <div class="input-group mb-3" style = "width: 300px">
         <span class="input-group-text" id="inputGroup-sizing-default">sort_by :</span>
         <select name="sort_by" class="form-select" aria-label="Default select example" style = "width:100px">
           <option selected value="{{current_criteria}}">{{current_criteria}}</option>
@@ -34,7 +36,8 @@
           {% endfor %}
         </select>
       </div>
-
+    {% endif %}
+    
         
         <br>
         <button class="btn btn-success" type="submit" name="get_ranks" value="True" >Get Ranks</button>
