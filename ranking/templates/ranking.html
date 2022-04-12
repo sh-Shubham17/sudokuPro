@@ -1,0 +1,72 @@
+
+{% extends 'base.html' %}
+{% load mathfilters%}
+
+{% block stylesheet %}
+{% endblock  %}
+{% block content %}
+<h1> Rankings</h1>
+
+<form Method = "POST" action="">
+    {% csrf_token %}
+
+    <div class="input-group mb-3" style = "width: 300px">
+        <span class="input-group-text" id="inputGroup-sizing-default">Level :</span>
+        <select name="level_selected" class="form-select" aria-label="Default select example" style = "width:100px">
+          <option selected value="{{current_level.name}}">{{current_level.name}}</option>
+          {% for level in all_levels %}
+          {% if level == current_level %}
+          {% else %}
+          <option value="{{level.name}}">{{level.name}}</option>
+          {% endif %}
+          {% endfor %}
+        </select>
+      </div>
+    <div class="input-group mb-3" style = "width: 300px">
+        <span class="input-group-text" id="inputGroup-sizing-default">sort_by :</span>
+        <select name="sort_by" class="form-select" aria-label="Default select example" style = "width:100px">
+          <option selected value="{{current_criteria}}">{{current_criteria}}</option>
+          {% for field in fields %}
+          {% if field == current_criteria %}
+          {% else %}
+          <option value="{{field}}">{{field}}</option>
+          {% endif %}
+          {% endfor %}
+        </select>
+      </div>
+
+        
+        <br>
+        <button class="btn btn-success" type="submit" name="get_ranks" value="True" >Get Ranks</button>
+    <form>
+
+    <br><br>
+<table class="table">
+    <thead class="table-dark">
+        <th>#</th>
+        <th> UserName</th>
+        <th>Best time</th>
+        <th>Average time</th>
+        <th>worst time </th>
+        <th>correct attempts</th>
+        <th>incorrect attempts</th>
+        <th>success rate</th>
+    </thead>
+    <tbody class="table-primary">
+
+        {% for row in ranking_data %}
+        <tr>
+            <td>  {{forloop.counter}}</td>
+            <td>  {{row.username}} </td>
+            <td>  {{ row.best_Time|intdiv:60 }}m {{ row.best_Time|mod:60 }}s </td>
+            <td>  {{ row.avg_Time|intdiv:60 }}m {{ row.avg_Time|mod:60 }}s </td>
+            <td>  {{row.worst_Time|intdiv:60 }}m {{ row.worst_Time|mod:60 }}s </td>
+            <td>  {{row.correct_attempts}} </td>
+            <td>  {{row.incorrect_attempts}} </td>
+            <td>  {{row.success_rate}}% </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock  %}

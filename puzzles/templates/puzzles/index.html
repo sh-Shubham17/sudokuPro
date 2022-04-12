@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load mathfilters %}
+{% block content %}
+
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Difficulty</th>
+                <th>Best Time</th>
+                <th>Average Time</th>
+                <th>SuccessFull Attempts</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for level in levels %}
+            <tr>
+                <td>
+                    <a href = "{% url 'puzzles:play' level.id %}"> {{level.name}} </a>
+                </td>
+                <td> {{ level.best_Time|intdiv:60 }}m {{ level.best_Time|mod:60 }}s</td>
+                <td> {{ level.avg_Time|intdiv:60 }}m {{ level.avg_Time|mod:60 }}s</td>
+                <td>{{level.attempts}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% comment %} <h1>{{rows.0.5}}</h1> {% endcomment %}
+{% endblock  %}

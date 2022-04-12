@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<center>
+    <h1 >welcome to our sudoku app</h1>
+</center>
+    <h1>History of Sudoku</h1>
+    <b>Invention of sudoku</b>
+    <p>
+        The history of Sudoku dates back to an 18th Century Swiss mathematician’s 
+        game called “Latin Squares” (according to this article from the Economist) 
+        and some of the first number puzzles to appear in newspapers were published in
+        France in 1895. But the modern game of Sudoku as we recognize it today was invented 
+        by Howard Garns, a freelance puzzle inventor from Connersville, Indiana, USA in 1979 
+        when it was published in Dell Pencil Puzzles and Word Games magazine. The puzzle
+        was known as “Number Place,” since it involved placing individual numbers into empty 
+        spots on a 9 x 9 grid.
+
+    </p>
+    <b>Spread over japan</b>
+    <p>
+        The game first appeared in Japan in 1984 where it was given the name “Sudoku,” 
+        which is short for a longer expression in Japanese – “Sūji wa dokushin ni kagiru” 
+        – which means, “the digits are limited to one occurrence.” Sudoku continues to be 
+        highly popular in Japan, where people buy over 600,000 Sudoku magazines per month.
+    </p>
+    <b>Why it was so famous in Japan ?</b>
+    <p>
+        One reason that Sudoku puzzles are so beloved in Japan is because the Japanese language doesn’t work 
+        very well for crossword puzzles – so a number puzzle was much more successful in Japanese culture. 
+        Also, Japan tends to love puzzles, since it is a country where millions of people make lengthy commutes 
+        by train or bus, and they need to kill time while waiting for the next stop.
+    </p>
+    <h1>Variants</h1>
+    <b>Mini Sudoku</b>
+    <p>
+        Under the name "Mini Sudoku", a 6×6 variant with 3×2 regions appears in the American newspaper USA Today 
+        and elsewhere. The object is the same as that of standard Sudoku, but the puzzle only uses the numbers
+         1 through 6. A similar form, for younger solvers of puzzles, called "The Junior Sudoku", has appeared
+         in some newspapers, such as some editions of The Daily Mail.
+    </p> 
+    <b>Imposing additional constraints</b>
+    <p>Another common variant is to add limits on the placement of numbers beyond the usual row, column, and 
+        box requirements. Often, the limit takes the form of an extra "dimension"; the most common is to require
+         the numbers in the main diagonals of the grid to also be unique. The aforementioned "Number Place Challenger"
+         puzzles are all of this variant, as are the Sudoku X puzzles in The Daily Mail, which use 6×6 grids.</p>
+    
+    <b>Killer Sudoku</b>
+    <p>
+        The Killer Sudoku variant combines elements of Sudoku and <a href = "https://en.wikipedia.org/wiki/Kakuro">Kakuro</a>.
+    </p>
+
+    <b>Hyper Sudoku / Windoku</b>
+    <p>Hyper Sudoku or Windoku uses the classic 9×9 grid with 3×3 regions, but defines four additional interior 3×3 regions in which
+     the numbers 1–9 must appear exactly once. It was invented by Peter Ritmeester and first published by him in Dutch Newspaper NRC
+     Handelsblad in October 2005, and since April 2007 on a daily basis in The International New York Times (International Herald Tribune).
+     The first time it was called Hyper Sudoku was in Will Shortz's Favorite Sudoku Variations (February 2006). It is also known as Windoku
+     because with the grid's four interior regions shaded, it resembles a window with glazing bars</p>
+
+    <b>Twin Sudoku</b>
+    <p>
+     In Twin Sudoku two regular grids share a 3×3 box. This is one of many possible types of overlapping grids. The rules for each
+     individual grid are the same as in normal Sudoku, but the digits in the overlapping section are shared by each half. In some
+      compositions neither individual grid can be solved alone – the complete solution is only possible after each individual grid
+       has at least been partially solved.
+    </p>
+
+    <h1>Competitions</h1>
+    <ul>
+        <li>The first <a href = "https://en.wikipedia.org/wiki/World_Sudoku_Championship">World Sudoku Championship</a> was held in Lucca, Italy, from 10 to March 2006. The winner was Jana Tylová of the Czech Republic
+             The competition included numerous variants.</li>
+        <li>All India Sudoku Championship (AISC) - Summer 2022. For details click <a href = "https://dare2compete.com/competition/all-india-sudoku-championship-aisc-summer-2022-startup-sabha-249713#!" >here</a></li>
+    </ul>
+
+    <h1>Rules to play Sudoku</h1>
+    <ul>
+        <li>Every square has to contain a single number</li>
+        <li>Only the numbers from 1 through to 9 can be used </li>
+        <li>Each 3×3 box can only contain each number from 1 to 9 once</li>
+        <li>Each vertical column can only contain each number from 1 to 9 once </li>
+        <li>Each horizontal row can only contain each number from 1 to 9 once </li>
+        <li> For a quick guide visit : <a href = "https://www.bing.com/videos/search?q=how+to+play+sudoku+rules&view=detail&mid=B362BDF756ED77F900E7B362BDF756ED77F900E7&FORM=VIRE">video Tutotial</a></li>
+    </ul>
+
+    <b></b>
+    <p></p>
+{% endblock  %}

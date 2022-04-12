@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+
+{% block stylesheet %}
+<style>
+    .table_container{
+      width: 420px;
+    }
+    table {
+        margin:1em auto;
+        height: 300px;
+      }
+      td {
+        height:30px;
+        width:30px;
+        text-align:center;
+      }
+      td:first-child {
+        border-left:solid;
+      }
+      td:nth-child(3n) {
+        border-right:solid ;
+      }
+      tr:first-child {
+        border-top:solid;
+      }
+      tr:nth-child(3n) td {
+        border-bottom:solid ;
+      }
+
+      input{
+        text-align: center;
+        border-top: hidden;
+        border-bottom: hidden;
+        border-left: hidden;
+        border-right: hidden;
+      }
+      .no-outline
+      {
+        outline: none;
+      }
+      .normal-numbers{
+        background:#eee;
+      }
+      .fixed-numbers{
+        background: rgb(210 29 29 / 82%);
+        color: white;
+      }
+      button{
+        margin: 5px;
+      }
+      .puzzle-level{
+        margin-right : 30px;
+        font-size:larger;
+        font-weight:500;
+      }
+      @media screen and (max-width: 600px) {
+        .table_container{
+          width: 320px;
+        }
+          .grid_input{
+            font-size:2.8vw;
+          }
+        table{
+          height:250px;
+        }
+        .message{
+          font-size:large;
+        }
+      }
+</style>
+{% endblock  %}
+
+
+{% block content %}
+<h1 class="message">{{message}}</h1>
+<span class="puzzle-level">Level : {{ puzzleObj.dificultyLevel }} </span> {% include './get_time.html' %}
+<form method= "POST" action="#">
+  {% csrf_token %}
+  <div class="table_container table-responsive">
+        <table class="table-bordered" cellpadding="0">
+            <tbody>
+            {% for row in mysudoku %}
+                <tr>
+                    {% for cell in row %}
+                      <td>
+                      {% if cell == 0 %}
+                          <input class = "grid_input no-outline normal-numbers" name="row{{forloop.parentloop.counter}}col{{forloop.counter}}" size ="1" maxlength = "1" autocomplete = "off">
+                      {% else %}
+                            <input class = "grid_input no-outline fixed-numbers" name="row{{forloop.parentloop.counter}}col{{forloop.counter}}" value = "{{cell}}" size="1" readonly >
+                      
+                      {% endif %}
+                      </td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+      </div>
+        {% if gamefinished %}
+        <button class="btn btn-primary" type="submit" name="finish" value="True" disabled >Submit</button>
+        <button class="btn btn-danger" type="submit" name="clearAll" value="True" disabled >clearAll</button>
+        {% else %}
+        <button class="btn btn-primary" type="submit" name="finish" value="True" >Submit</button>
+        <button class="btn btn-danger" type="submit" name="clearAll" value="True" >clearAll</button>
+        {% endif %}
+       <button class="btn btn-dark" type="submit" name="restart" value="True">Restart</button>
+    </form>
+
+    {% for i in range %}
+    <div>
+      {% for j in range %}
+        <span>{{j}}</span>
+      {% endfor %}
+    </div>
+    {% endfor %}
+
+{% endblock  %}

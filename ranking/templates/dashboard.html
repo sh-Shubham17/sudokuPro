@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load mathfilters%}
+
+{% block stylesheet %}
+<style>
+    .heading {
+        background:greenyellow;
+    }
+</style>
+{% endblock  %}
+{% block content %}
+<div class= "heading"><h1>welcome <u>{{request.user.username}}</u> on dashboard page</h1></div>
+<h5>have a look at your solving skills</h5>
+{% for row in user_data %}
+<h3>Level : {{row.level}}</h3>
+    <ul>
+        <li> Best time  : {{ row.best_Time|intdiv:60 }}m {{ row.best_Time|mod:60 }}s </li>
+        <li> Average time  : {{ row.avg_Time|intdiv:60 }}m {{ row.avg_Time|mod:60 }}s </li>
+        <li> worst time  : {{row.worst_Time|intdiv:60 }}m {{ row.worst_Time|mod:60 }}s </li>
+        <li> Number of correct attempts : {{row.correct_attempts}} </li>
+        <li> Number of incorrect attempts : {{row.incorrect_attempts}} </li>
+        <li> success rate  :  {{row.success_rate}}% </li>
+    </ul>
+{% endfor %}
+
+{% endblock  %}
