@@ -52,10 +52,10 @@ def rankings(request):
         if( datarows):
             return render(request, 'ranking.html', { 'all_levels':levels,'current_level':current_level,'current_criteria':order_criteria,'fields':order_fields, 'ranking_data': datarows})
         else:
-            message = "No Levels found."
+            message = "No record found."
             return render(request, 'ranking.html', {'message': message} )
 
     else:
-        message = "No Levels found."
+        message = "No record found."
         return render(request, 'ranking.html', {'message': message} )
    
