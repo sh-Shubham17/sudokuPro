@@ -228,13 +228,13 @@ def get_time(request):
     returns : render funcion | dictionary - contianing minutes & seconds 
     """
     if(globals.puzzleSubmit == False):
-        timeSpent = time.time() - globals.startTime
-        globals.timeElapsed = int(timeSpent)
+        globals.timeElapsed = int(time.time() - globals.startTime) 
+        
 
     seconds = globals.timeElapsed%60
     minutes = globals.timeElapsed//60
-    minutes = minutes if(minutes >= 10) else '0'+str(minutes)
-    seconds = seconds if(seconds >= 10) else '0'+str(seconds)
+    #minutes = minutes if(minutes >= 10) else '0'+str(minutes)
+    #seconds = seconds if(seconds >= 10) else '0'+str(seconds)
     # print(globals.minutes, globals.seconds)
     # print(minutes, seconds)
     return render(request,'puzzles/get_time.html', {'minutes' : minutes, 'seconds': seconds} )
