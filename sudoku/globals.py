@@ -4,7 +4,7 @@ import sudoku
 arr = [[0 for x in range(0,9)] for y in range(0,9)]
 sudokuPuzzle = [[0 for x in range(0,9)] for y in range(0,9)]
 playdictionary = {}
-startTime = time.time()
+startTime = 0
 totalTime = 0
 puzzleSubmit = False
 timeElapsed = 0
