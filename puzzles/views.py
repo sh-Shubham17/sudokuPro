@@ -240,5 +240,5 @@ def get_time(request):
     seconds = seconds if(seconds >= 10) else '0'+str(seconds)
     # print(globals.minutes, globals.seconds)
     # print(minutes, seconds)
-    return render(request,'puzzles/get_time.html', {'minutes' : minutes, 'seconds': seconds  } )
+    return render(request,'puzzles/get_time.html', {'minutes' : minutes, 'seconds': seconds , 'starttime': globals.startTime , 'elapsed_time' : time.time() } )
      #'starttime': globals.startTime , 'elapsed_time' : time.time()
