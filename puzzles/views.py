@@ -11,6 +11,8 @@ from sudoku import globals  #gobals is an object that contains all globals varib
 # Create your views here.
 def reInitializeGlobals():
     """To reinitialise globals attributes for re use"""
+    if hasattr( globals, 'startTime'):
+        delattr(globals,'startTime') # or can be done like -  del globals.startTime
     globals.invalidInput = False
     globals.puzzleSubmit = False
 
