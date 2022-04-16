@@ -221,7 +221,7 @@ def play(request, level_id):
         globals.startTime = time.time()
         globals.minutes = 0         #only when user restarts the game then only globals minuters and seconds will be initialized by 0(zero)
         globals.seconds = 0         #when timer stops or game ends then we can't put minutes and seconds zero because we want to display 
-        globals.playdictionary['starttime'] = globals.startTime
+        #globals.playdictionary['starttime'] = globals.startTime
         return renderPlay(request, globals.playdictionary)      #them constantly as hx trigger is sending request every seconds
 
 def get_time(request):
@@ -236,9 +236,9 @@ def get_time(request):
 
     seconds = globals.timeElapsed%60
     minutes = globals.timeElapsed//60
-    #minutes = minutes if(minutes >= 10) else '0'+str(minutes)
-    #seconds = seconds if(seconds >= 10) else '0'+str(seconds)
+    minutes = minutes if(minutes >= 10) else '0'+str(minutes)
+    seconds = seconds if(seconds >= 10) else '0'+str(seconds)
     # print(globals.minutes, globals.seconds)
     # print(minutes, seconds)
-    return render(request,'puzzles/get_time.html', {'minutes' : minutes, 'seconds': seconds , 'starttime': globals.startTime , 'elapsed_time' : time.time() } )
-
+    return render(request,'puzzles/get_time.html', {'minutes' : minutes, 'seconds': seconds  } )
+     #'starttime': globals.startTime , 'elapsed_time' : time.time()
