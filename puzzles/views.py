@@ -122,17 +122,10 @@ def getRandomPuzzle(level):
     #puzzlesObj = Puzzle.objects.select_related().filter(id = level_id)
 
     #print(puzzlesObj, type(puzzlesObj ), puzzlesObj.count())
-    # puzzle = puzzlesObj[0]      
-    # we can see we can access puzzle pbjects using indexing
+    # puzzle = puzzlesObj[0]      # we can see we can access puzzle pbjects using indexing
     # print(puzzle.title, puzzle.source)
-    print(puzzlesObj)
-    print(puzzlesObj is None)
-    print(len(puzzlesObj))
-    if(len(puzzlesObj) > 0 ):
-        puzzles_count = puzzlesObj.count() -1
-        random_puzzle = puzzlesObj[ random.randint(0,puzzles_count)]
-    else:
-         return None
+    puzzles_count = puzzlesObj.count() -1
+    random_puzzle = puzzlesObj[ random.randint(0,puzzles_count)]
     #print("random puzzle", random_puzzle)
     return random_puzzle
 
@@ -144,16 +137,11 @@ def renderPlay(request, playdictionary):
 
 def changePuzzle(levelObj):
     puzzleObj = getRandomPuzzle(levelObj)
-    message = 'solve the puzzle below'
-    sudokuPuzzle = []
-    if( puzzleObj):
-        sudokuPuzzle = [
-            puzzleObj.qrow1,puzzleObj.qrow2,puzzleObj.qrow3,puzzleObj.qrow4,puzzleObj.qrow5,puzzleObj.qrow6,puzzleObj.qrow7,puzzleObj.qrow8,puzzleObj.qrow9
-        ]           #2d list puzzleObj
-        sudokuPuzzle = removeDigits(puzzleObj, sudokuPuzzle)
-    else :
-        message = "No puzzles found! :("
-    globals.playdictionary = {'mysudoku':sudokuPuzzle , 'message': message , 'puzzleObj': puzzleObj, 'gamefinished': False}
+    sudokuPuzzle = [
+        puzzleObj.qrow1,puzzleObj.qrow2,puzzleObj.qrow3,puzzleObj.qrow4,puzzleObj.qrow5,puzzleObj.qrow6,puzzleObj.qrow7,puzzleObj.qrow8,puzzleObj.qrow9
+    ]           #2d list puzzleObj
+    sudokuPuzzle = removeDigits(puzzleObj, sudokuPuzzle)
+    globals.playdictionary = {'mysudoku':sudokuPuzzle , 'message': 'solve the puzzle below', 'puzzleObj': puzzleObj, 'gamenotfinished': True}
 
 
 
@@ -180,15 +168,15 @@ def play(request, level_id):
     puzzle_level = get_object_or_404(DificultyLevel, pk = level_id)    #to get level object of given level id , we can get object usinglevel id only
     # we can also do like (id = level_id)    
     if request.method == "POST":
-
         if request.POST.get("restart") =="True":
+            globals.playdictionary['notSubmitted'] = False
             return redirect("puzzles:play", level_id = level_id)
 
-        elif request.POST.get("clearAll") =="True":
-            return renderPlay(request,globals.playdictionary)
+        # elif request.POST.get("clearAll") =="True":
+        #     return renderPlay(request,globals.playdictionary)
 
         elif request.POST.get("finish") == "True":
-            globals.playdictionary['gamefinished']= True # we need this so I can diable submit and cleaall buttons after user finisged the game so it will
+            globals.playdictionary['gamenotfinished']= False # we need this so I can diable submit and cleaall buttons after user finisged the game so it will
             # prevent user from starting timer and game again with all data showed in sudoku table. only way to replay should be restart button only 
             globals.puzzleSubmit = True
             userSolution =  get_userSolution(request)
@@ -202,8 +190,10 @@ def play(request, level_id):
                 # solved = checkSolution(userSolution)
                 solved = globals.validMatrix(userSolution)
                 if(solved):
-                    minutes = globals.timeElapsed // 60
-                    seconds = globals.timeElapsed % 60
+                    print(request.POST.get('time_taken'),type(request.POST.get('time_taken')))
+                    minutes = int(request.POST.get('time_taken')[:2])
+                    seconds = int(request.POST.get('time_taken')[3:])
+                    globals.timeElapsed = minutes*60 + seconds
                     globals.playdictionary['message'] = "congrats you Have solved this puzzle in time : {}m {}s".format(minutes, seconds)
                     puzzle_level.best_Time = globals.calculateBestTime(puzzle_level.best_Time, globals.timeElapsed)
                     puzzle_level.attempts +=1
@@ -219,26 +209,29 @@ def play(request, level_id):
         globals.playdictionary["level_id"] = level_id
         changePuzzle(puzzle_level)
         globals.startTime = time.time()
+        #startTime = time.time()
         globals.minutes = 0         #only when user restarts the game then only globals minuters and seconds will be initialized by 0(zero)
         globals.seconds = 0         #when timer stops or game ends then we can't put minutes and seconds zero because we want to display 
-        #globals.playdictionary['starttime'] = globals.startTime
         return renderPlay(request, globals.playdictionary)      #them constantly as hx trigger is sending request every seconds
 
-def get_time(request):
-    """TO display time every seconds 
-    this method calculates time elapsed since game starts , and sends minutes and seconds in format to display
-    Parameter : object | request 
-    returns : render funcion | dictionary - contianing minutes & seconds 
-    """
-    if(globals.puzzleSubmit == False):
-        globals.timeElapsed = int(time.time() - globals.startTime) 
-        
 
-    seconds = globals.timeElapsed%60
-    minutes = globals.timeElapsed//60
-    minutes = minutes if(minutes >= 10) else '0'+str(minutes)
-    seconds = seconds if(seconds >= 10) else '0'+str(seconds)
-    # print(globals.minutes, globals.seconds)
-    # print(minutes, seconds)
-    return render(request,'puzzles/get_time.html', {'minutes' : minutes, 'seconds': seconds , 'starttime': globals.startTime  } )
-     #'starttime': globals.startTime , 'elapsed_time' : time.time()
+# def get_time(request):
+#     """TO display time every seconds 
+#     this method calculates time elapsed since game starts , and sends minutes and seconds in format to display
+#     Parameter : object | request 
+#     returns : render funcion | dictionary - contianing minutes & seconds 
+#     """
+#     if(globals.puzzleSubmit == False):
+#         timeSpent = time.time() - globals.startTime
+#         globals.timeElapsed = int(timeSpent)
+
+#     seconds = globals.timeElapsed%60
+#     minutes = globals.timeElapsed//60
+#     minutes = minutes if(minutes >= 10) else '0'+str(minutes)
+#     seconds = seconds if(seconds >= 10) else '0'+str(seconds)
+
+#     #logging.debug("elapsed time {} , minutes {} , seconds {}".format(globals.timeElapsed,minutes, seconds) )
+#     # print(globals.minutes, globals.seconds)
+#     # print(minutes, seconds)
+#     return render(request,'puzzles/get_time.html', {'minutes' : minutes, 'seconds': seconds, 'starttime': globals.startTime , 'elapsed_time' : time.time()} )
+
