@@ -79,7 +79,7 @@
 
 {% block content %}
 <h1 class="message">{{message}}</h1>
-  {% comment %} {% if gamenotfinished %} {% endcomment %}
+  {% if gamenotfinished %}
       <span class="puzzle-level" >Level : {{ puzzleObj.dificultyLevel }} </span>
         <span>    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-stopwatch" viewBox="0 0 16 16">
         <path d="M8.5 5.6a.5.5 0 1 0-1 0v2.9h-3a.5.5 0 0 0 0 1H8a.5.5 0 0 0 .5-.5V5.6z"/>
@@ -95,7 +95,7 @@
         <label class="form-check-label" for="flexSwitchCheckChecked">Pause</label>
       </span>
     <img src="{% static 'kid_goku_pause_image.png' %}" id="gridReplacer" alt="My image" style = "display:none; width: 330px;" > 
-  {% comment %} {% endif %} {% endcomment %}
+  {% endif %}
 
 <form method= "POST" action="#" id="sudokugrid">
   {% csrf_token %}

@@ -20,7 +20,9 @@ function startTimer(){
         inputTime.value = timeString;
             }
         catch(err){
-        clearInterval(Interval_Id)
+            console.log("error occured! in catch now");
+            console.log(err);
+            clearInterval(Interval_Id)
         }
     }
 }
