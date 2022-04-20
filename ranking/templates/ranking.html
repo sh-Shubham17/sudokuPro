@@ -46,12 +46,7 @@
       <thead class="table-dark">
           <th>#</th>
           <th> UserName</th>
-          <th>Best time</th>
-          <th>Average time</th>
-          <th>worst time </th>
-          <th>correct attempts</th>
-          <th>incorrect attempts</th>
-          <th>success rate</th>
+          <th>{{current_criteria}}</th>
       </thead>
       <tbody class="table-primary">
       
@@ -59,12 +54,19 @@
           <tr>
               <td>  {{forloop.counter}}</td>
               <td>  {{row.username}} </td>
+              {% if current_criteria == "best_Time" %}
               <td>  {{ row.best_Time|intdiv:60 }}m {{ row.best_Time|mod:60 }}s </td>
+              {% elif current_criteria == "avg_Time" %}
               <td>  {{ row.avg_Time|intdiv:60 }}m {{ row.avg_Time|mod:60 }}s </td>
+              {% elif current_criteria == "-worst_Time" %}
               <td>  {{row.worst_Time|intdiv:60 }}m {{ row.worst_Time|mod:60 }}s </td>
+              {% elif current_criteria == "-correct_attempts" %}
               <td>  {{row.correct_attempts}} </td>
+              {% elif current_criteria == "-success_rate" %}
               <td>  {{row.incorrect_attempts}} </td>
+              {% else %}
               <td>  {{row.success_rate}}% </td>
+              {% endif %}
           </tr>
           {% endfor %}
       </tbody>
