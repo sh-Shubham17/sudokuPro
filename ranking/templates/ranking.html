@@ -63,9 +63,9 @@
               {% elif current_criteria == "-correct_attempts" %}
               <td>  {{row.correct_attempts}} </td>
               {% elif current_criteria == "-success_rate" %}
-              <td>  {{row.incorrect_attempts}} </td>
-              {% else %}
               <td>  {{row.success_rate}}% </td>
+              {% else %}
+              <td>  {{row.incorrect_attempts}} </td>
               {% endif %}
           </tr>
           {% endfor %}
