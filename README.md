@@ -1,4 +1,4 @@
-# sudoku
+# sudoku - Completed
 
 #steps to setup 
 
