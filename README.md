@@ -25,32 +25,32 @@ DATABASES = {</br>
 comment out all content inside DATABASES block</br>
 and copy paste :</br>
 ```
-'default': {</br>
-   'ENGINE': 'django.db.backends.postgresql_psycopg2',</br>
-   'NAME': 'postgres',</br>
-   'USER': 'postgres',</br>
-   'PASSWORD': '1234',</br>
-   'HOST': 'localhost',</br>
-   'PORT': '5432',  # left empty means defult port is used which is 5432 while installing.</br>
-  }</br>
+'default': {
+   'ENGINE': 'django.db.backends.postgresql_psycopg2',
+   'NAME': 'postgres',
+   'USER': 'postgres',
+   'PASSWORD': '1234',
+   'HOST': 'localhost',
+   'PORT': '5432',  # left empty means defult port is used which is 5432 while installing.
+  }
 ```
 </br></br>
 now your DATABASES will look like :</br>
 ```
-DATABASES = {</br>
- 'default': {</br>
-     'ENGINE': 'django.db.backends.postgresql_psycopg2',</br>
-     'NAME': 'postgres',</br>
-     'USER': 'postgres',</br>
-     'PASSWORD': '1234',</br>
-     'HOST': 'localhost',</br>
-     'PORT': '5432',  <> left empty means defult port is used which is 5432 while installing</br><
-  }</br>
-}</br>
+DATABASES = {
+ 'default': {
+     'ENGINE': 'django.db.backends.postgresql_psycopg2',
+     'NAME': 'postgres',
+     'USER': 'postgres',
+     'PASSWORD': '1234',
+     'HOST': 'localhost',
+     'PORT': '5432',  # left empty means defult port is used which is 5432 while installing
+  }
+}
 ```
 </br>
 then </br>
-If this is your first time creating a local version of the website for testing, you'll need to set up the local website database from scratch. The following command will create a new database with the models in the Outreachy website. The database will initially have no website pages, but will eventually store your local test pages.
+If this is your first time creating a local version of the website for testing, you'll need to set up the local website database from scratch. The following command will create a new database with the models in the sudoku app. The database will initially have no website pages, but will eventually store your local test pages.
 
 ```
 ./python manage.py migrate
