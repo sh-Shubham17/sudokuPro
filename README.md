@@ -1,5 +1,12 @@
 # sudoku PRO - Completed
 
+# Demo of the APPLICATION : 
+
+
+https://github.com/sh-Shubham17/sudokuPro/assets/61670651/b910ffe3-4528-4967-9a9b-aae90b60967b
+
+
+
 ## steps to setup 
 
 Make sure that you have *not* run `pipenv shell` yet, then run these two commands:
