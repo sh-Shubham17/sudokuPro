@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+# sudoku
+
+this is a web application 
+=======
 # sudoku PRO - Completed
 
 # Demo of the APPLICATION : 
@@ -81,3 +86,4 @@ then to run server :
 ```
 
 
+>>>>>>> 89896f9f7472f0153070892c4f5ee7dd2aaab460

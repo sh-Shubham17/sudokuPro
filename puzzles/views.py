@@ -25,7 +25,7 @@ def index(request):
     levels = DificultyLevel.objects.all().order_by('number_of_empty_cells')
     return render(request, 'puzzles/index.html', {'levels':levels})
 
-def updatePlayingData(solved,Level, userName):
+def updatePlayingData(solved, Level, userName):
     """To update playing data table after user clicks submit button while playing game
     if user is new, then it'll create a object of playnigdata and add new row for new user
     parameter : 
@@ -48,6 +48,9 @@ def updatePlayingData(solved,Level, userName):
             # for success percentage
             playerLevelData.correct_attempts +=1 
             playerLevelData.success_rate = 100 * playerLevelData.correct_attempts / (playerLevelData.correct_attempts + playerLevelData.incorrect_attempts)
+
+            #update solved times list by adding new solve time
+            playerLevelData.solved_timings += [globals.timeElapsed]
 
             # for average best time
             playerLevelData.avg_Time = globals.calculateAverageTime(playerLevelData.avg_Time, globals.timeElapsed, playerLevelData.correct_attempts)   

@@ -54,6 +54,8 @@ class PlayingData(models.Model):
     incorrect_attempts = models.IntegerField(default = 0)
     best_Time = models.IntegerField(default = 0)
     avg_Time  = models.IntegerField(default = 0)
+    solved_timings = ArrayField(models.IntegerField())
+
     worst_Time = models.IntegerField(default = 0)
     def __str__(self):
         return self.username

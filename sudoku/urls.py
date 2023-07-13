@@ -17,6 +17,9 @@ from django.contrib import admin
 from django.urls import path , include
 from . import views
 from ranking import views as ranking_view
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 urlpatterns = [
     path('',views.home, name = 'home'),
@@ -28,5 +31,4 @@ urlpatterns = [
     path('logout/', views.logoutUser, name = 'logout'),
     path('dashboard/',ranking_view.dashboard , name = 'dashboard'),
     path('rankings/',ranking_view.rankings , name = 'rankings')
-
-]
+]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -10,6 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
+import matplotlib
+matplotlib.use('Agg')
+
 import os
 from pathlib import Path
 import django_heroku
@@ -92,12 +95,20 @@ DATABASES = {
     #     'ENGINE': 'django.db.backends.sqlite3',
     #     'NAME': BASE_DIR / 'db.sqlite3',
     # }
-    'default': {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    #     'NAME': 'd3e2eu99b8vga0',
+    #     'USER': 'bduvwisbulstys',
+    #     'PASSWORD': '5e4aa0a877886c4b012d38f758ed0fa22d53daf4d076d4fe5c4e5585f5c6be97',
+    #     'HOST': 'ec2-52-73-155-171.compute-1.amazonaws.com',
+    #     'PORT': '5432',  # left empty means defult port is used which is 5432 while installing
+    # }
+     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd3e2eu99b8vga0',
-        'USER': 'bduvwisbulstys',
-        'PASSWORD': '5e4aa0a877886c4b012d38f758ed0fa22d53daf4d076d4fe5c4e5585f5c6be97',
-        'HOST': 'ec2-52-73-155-171.compute-1.amazonaws.com',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': '1234',
+        'HOST': 'localhost',
         'PORT': '5432',  # left empty means defult port is used which is 5432 while installing
     }
 }
@@ -138,10 +149,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 # STATIC_URL = 'static/'
-
+STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATIC_URL = "/static/"
-django_heroku.settings(locals())
+
+# django_heroku.settings(locals())
 
 STATICFILES_DIRS = [ os.path.join( BASE_DIR ,'static' )]
 
