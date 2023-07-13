@@ -81,6 +81,3 @@ then to run server :
 ```
 ./python manage.py runserver
 ```
-
-
->>>>>>> 89896f9f7472f0153070892c4f5ee7dd2aaab460
