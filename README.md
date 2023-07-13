@@ -1,9 +1,6 @@
-<<<<<<< HEAD
-# sudoku
-
-this is a web application 
-=======
 # sudoku PRO - Completed
+# sudoku
+this is a web application for gaming sudoku(watchting ranks, user stats visualization using plots)  and solver that checks validity of sudoku puzzle and can solve any valid sudoku puzzle
 
 # Demo of the APPLICATION : 
 
