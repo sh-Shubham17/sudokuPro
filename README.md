@@ -2,12 +2,17 @@
 
 # Demo of the APPLICATION : 
 
+https://github.com/sh-Shubham17/sudokuPro/assets/61670651/47769502-4d84-4f93-82d9-eb8fb23cee46
 
-https://github.com/sh-Shubham17/sudokuPro/assets/61670651/b910ffe3-4528-4967-9a9b-aae90b60967b
 
+## Updation : 
+plots for visualition of user improvement and stats
+
+https://github.com/sh-Shubham17/sudokuPro/assets/61670651/4af147c0-6fda-45d2-9589-22f7084825c3
 
 
 ## steps to setup 
+
 
 Make sure that you have *not* run `pipenv shell` yet, then run these two commands:
 
